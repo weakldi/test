@@ -1,0 +1,65 @@
+%!TEX TS-program = pdflatex
+%!TEX TS-options = -shell-escape
+% Author: Phil Steinhorst, p.st@wwu.de
+% https://github.com/phist91/latex-templates
+
+\newcommand{\obenlinks}{Name der Vorlesung}		% hier Name der Veranstaltung eintragen
+\input{config.tex}	% Präambel (ohne die geht nichts!)
+\usetikzlibrary{quotes,angles}
+\begin{document}
+	\section{A8}
+	\subsection{b Beweis durch Widerspruch}
+	
+	\begin{tikzpicture}
+		\coordinate (A) at (0,0);
+		\coordinate (B) at (0,2);
+		\coordinate (C) at (2,2);
+		\coordinate (D) at (5,2);
+		\coordinate (E) at (5,0);
+		\coordinate (F) at (3,0);
+		\coordinate (G) at (1.5,3);
+	    \coordinate (H) at (3.5,-1);
+		\draw  (A) -- (F) -- (E) ;
+		\draw (B) node[left] {$c$};
+		\draw (B) -- (C) -- (D);
+		\draw (A) node[left] {$b$};
+		
+		\draw (H) -- (F) -- (C) -- (G);
+		\draw (H) node[below] {$a$};
+		
+		\pic [pic text=\text{$\varphi $ = $\epsilon$}, draw, angle radius=1cm,black] {angle=B--C--F};
+		\pic [pic text=\text{$\beta$}, draw, angle radius=1cm,black] {angle=F--C--D};
+		
+		\pic [pic text=$\epsilon$, draw, angle radius=1cm,black] {angle=E--F--C};
+		
+		\coordinate (I) at (7,0);
+		\coordinate (J) at (7,2);
+		\coordinate (K) at (11,2);
+		\coordinate (L) at (11,0);
+		\coordinate (M) at (9,1);
+		
+		\draw (K) node[right] {$b$};
+		\draw (L) node[right] {$c$};
+		
+		\draw (I) -- (K);
+		\draw (J) -- (L);
+		
+		\node (dot1) at ($(E)!0.5!(I)$) {$...$};
+		\node (dot2) at ($(D)!0.5!(J)$) {$...$};
+		
+		\pic [pic text=$\alpha$, draw, angle radius=1cm,black] {angle=J--M--I};
+	\end{tikzpicture}
+	\\
+	Annahme: $\epsilon = \varphi \Rightarrow$ b und c besitzen einen Schnittpunkt \\
+	Wenn ein Schnittpunkt existiert so schließen $\epsilon $ und $\beta$ und $\alpha$ ein Dreieck ein.
+	\begin{align}
+		\beta &= \pi - \varphi \label{1}\\
+		\varphi &= \epsilon \label{2}\\
+	\overset{\text{Gleichung }\ref{1} \text{ und }\ref{2}}{\Leftrightarrow}	\beta &= \pi -\epsilon \label{3}\\
+	\overset{\text{Dreieck}}{\Rightarrow} \pi &= \alpha + \beta + \epsilon \\
+	\Leftrightarrow \alpha &= - \pi + \beta + \epsilon \\
+	\overset{\text{Gleichung }\ref{3}}{\Leftrightarrow} \alpha &= - \pi + \pi -\epsilon + \epsilon \\
+	\Leftrightarrow \alpha &= 0 
+	\end{align}
+	$\Rightarrow \text{Da } \alpha \text{ gleich 0 ist exsistiert kein Schnittpunkt!}$
+\end{document}
